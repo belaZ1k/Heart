@@ -1,0 +1,136 @@
+/* Общие стили */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: black;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background 1s ease-in-out;
+  }
+  
+  .container {
+    text-align: center;
+    position: relative;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  /* Сердце */
+  .heart {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #ff4e50, #d90000);
+    position: relative;
+    transform: rotate(-45deg) scale(0.8);
+    transition: transform 0.5s ease-in-out, box-shadow 1s ease-in-out;
+  }
+  
+  .heart::before,
+  .heart::after {
+    content: "";
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #ff4e50, #d90000);
+    border-radius: 50%;
+    position: absolute;
+  }
+  
+  .heart::before {
+    top: -60px;
+    left: 0;
+  }
+  
+  .heart::after {
+    left: 60px;
+    top: 0;
+  }
+  
+  /* Текст */
+  .pulse-text {
+    font-size: 26px;
+    color: white;
+    margin-top: 50px; /* Было 20px, увеличиваем отступ */
+    text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  /* Выключатель — цепочка с шариком */
+  .switch-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+  }
+  
+  .chain {
+    width: 4px;
+    height: 80px;
+    background: linear-gradient(to bottom, #bbb, #777);
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .chain-ball {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 30% 30%, #fff, #ccc);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Анимация нажатия — bounce */
+  @keyframes bounce {
+    0% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(10px);
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  
+  /* Класс для анимации bounce */
+  .bounce {
+    animation: bounce 0.5s;
+  }
+  
+  /* Стили при активации */
+  .active-body {
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.6) 0%, black 80%);
+  }
+  
+  .active-container {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .active-heart {
+    transform: rotate(-45deg) scale(1.2);
+    animation: heartbeat 1.2s infinite;
+    box-shadow: 0 0 80px rgba(255, 0, 0, 1), 0 0 120px rgba(255, 0, 0, 0.8);
+  }
+  
+  .active-text {
+    opacity: 1;
+  }
+  
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1.2) rotate(-45deg);
+    }
+    50% {
+      transform: scale(1.4) rotate(-45deg);
+    }
+  }  
